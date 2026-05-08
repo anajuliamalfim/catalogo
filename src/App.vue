@@ -1,69 +1,13 @@
 <script setup>
-import {ref} from 'vue'
-import ProdutoChild from './components/icons/ProdutoChild.vue';
-import { liastaProdutos } from './data/produtos';
-import { formataPreco } from './utils/produtoUtils';
 
-const produtos = ref(listaProdutos)
-const preco = ref(0);
-const posicaoProduto = ref(-1)
-const alterando = ref(false)
-
-function corrigirPreco(idProduto, precoProduto) {
-  preco.value = precoProduto;
-  posicaoProduto.value = produtos.value.findIndex(p => p.id === idProduto);
-  alterando.value = true;
-
-}
-
-function salvarPreco() {
-  produtos.value[posicaoProduto.value].preco = preco.value
-  alterando.value = false;
-}
 </script>
 
 
 
 <template>
-  <div class="container">
-    <h1>Catálogo de Produtos</h1>
-    <div>
-      <ul>
-        <ProdutoChild v-for="produto in produtos" 
-        :key="produto.id" 
-        :nome="produto.nome"
-        :id="produto.id"
-        :preco="produto.preco"
-        :categoria="produto.categoria"
-        @corrigirPreco="corrigirPreco">
-        </ProdutoChild>
-
-        <ProdutoChild v-for="produto in produtos" 
-        :key="produto.id" 
-        :nome="produto.nome"
-        :id="produto.id"
-        :preco="produto.preco"
-        :categoria="produto.categoria"
-        @salvarPreco="salvarPreco"
-        >
-        </ProdutoChild>
-      </ul>
-
-    
-
-    </div>
-
-    <div v-show="alterando">
-      <label>Preço</label>
-      <input type="text" v-model="preco">
-      <button @click.prevent="salvarPreco()">Salvar</button>
-    </div>
-  </div>
+  <RouterView></RouterView>
 
 </template>
-
-
-
 
 <style scoped>
 </style>

@@ -10,4 +10,5 @@ const produtos = [
 { id: 9, nome: 'Guia de Passeio', preco: 40, categoria: 'Acessórios' }
 ]
 
+
 export {produtos as liastaProdutos}
